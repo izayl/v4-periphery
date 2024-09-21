@@ -8,10 +8,12 @@ import {SignatureVerification} from "permit2/src/libraries/SignatureVerification
 
 import {IERC721Permit_v4} from "../interfaces/IERC721Permit_v4.sol";
 import {UnorderedNonce} from "./UnorderedNonce.sol";
+import {ERC721Enumerable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 /// @title ERC721 with permit
 /// @notice Nonfungible tokens that support an approve via signature, i.e. permit
-abstract contract ERC721Permit_v4 is ERC721, IERC721Permit_v4, EIP712_v4, UnorderedNonce {
+
+abstract contract ERC721Permit_v4 is ERC721, ERC721Enumerable, IERC721Permit_v4, EIP712_v4, UnorderedNonce {
     using SignatureVerification for bytes;
 
     /// @notice Computes the nameHash and versionHash
